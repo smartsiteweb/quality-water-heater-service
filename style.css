@@ -403,13 +403,26 @@ footer {
 
 
 
+/* tablet styling */
+@media screen and (min-width: 2000px)
+{
+  /* body {
+    background-color: red;
+  } */
 
 
-@media screen and (min-width: 900px)
+
+}
+
+
+
+/* desktop styling */
+@media screen and (min-width: 1000px)
 {
   body {
     /* background-color: red; */
-
+    font-size: 1.5rem;
+    line-height: 2rem;
 
   }
 
@@ -426,39 +439,61 @@ footer {
     padding: 5rem 15rem;
   }
 
+  header {
+    display: none;
+  }
+
+
+  #landing {
+    height: 100vh;
+    background-color: steelblue;
+  }
 
   #landing_img_container {
     width: 100vw;
-    height: 75vh;
+    height: 100%;
 
     img {
       width: 100%;
       height: 100%;
-      object-fit: cover;
-      object-position: top -7rem right 0;
+      object-fit: contain;
+      object-position: bottom 0rem right 0;
       left: 0;
       /* top: 0; */
       /* top: 5rem; */
     }
   }
 
+  #blurb-greeting {
+    position: relative;
+    margin-bottom: 12rem;
+  }
+
   #curly {
     position: absolute;
     height: 10rem;
-    transform: scaleX(-1) rotate(-80deg);
-    left: 36rem;
-    top: 0rem;
+    transform: scaleX(-1) rotate(180deg);
+    left: 9rem;
+    top: 2rem;
   }
   
   #blurb {
-    flex-direction: row;
+    position: absolute;
+
+    flex-direction: column;
     justify-content: space-between;
     align-items: center;
+
+    background-color: steelblue;
+
+    height: calc(100vh - 20rem);
+    padding: 10rem 5rem;
 
     h2 {
       font-size: 4rem;
       line-height: 4rem;
       margin: 0;
+      color: white;
     }
   }
 
@@ -479,6 +514,9 @@ footer {
   #services_list {
     flex-direction: row;
     gap: 2rem;
+
+    flex-wrap: wrap;
+    justify-content: space-around;
 
     li {
       width: 25rem;
@@ -546,16 +584,18 @@ footer {
     max-width: 40rem;
   }
 
-}
 
+  #reviews {
+    #review_slides {
+      align-items: center;
+  
+      li {
+        width: 50%;
 
-
-@media screen and (min-width: 2000px)
-{
-  /* body {
-    background-color: red;
-  } */
-
-
-
+        iframe {
+          min-height: 100%;
+        }
+      }
+    }
+  }
 }

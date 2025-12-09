@@ -15,6 +15,10 @@ class Slide {
             this.imagesContainer = slideElement.getElementsByTagName("ol")[0];
         }
 
+
+        
+
+
         this.images = this.imagesContainer.getElementsByTagName("li");
         this.imageWidth = this.images[0].getBoundingClientRect().width;
 
