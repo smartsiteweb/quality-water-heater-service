@@ -4,6 +4,8 @@ window.jsPDF = window.jspdf.jsPDF
 
 let form;
 
+let secretEntered = false;
+
 window.addEventListener('load', (_) => {
   form = document.getElementById('invoice_form');
   form.addEventListener('submit', buildPdf);
@@ -11,6 +13,17 @@ window.addEventListener('load', (_) => {
   const downloadButton = document.getElementById('download_button');
   downloadButton.addEventListener('click', generatePdf);
   downloadButton.disabled = true;
+
+  while(1) {
+    const response = prompt('Enter Secret:');
+
+    if(response === 'dave') {
+      secretEntered = true;
+      break;
+    }
+  }
+
+
 });
 
 
@@ -41,7 +54,7 @@ const buildPdf = (e) => {
   document.getElementById('gen_date').textContent = dateString;
   document.getElementById('gen_time').textContent = today.toTimeString();
 
-  document.getElementById('download_button').disabled = false;
+  document.getElementById('download_button').disabled = false && secretEntered;
 };
 
 
