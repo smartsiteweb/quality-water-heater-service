@@ -131,6 +131,9 @@ header {
   top: -1.5rem;
 }
 
+#scrollme {
+  display: none;
+}
 
 #landing_img_container {
   width: 100%;
@@ -383,6 +386,7 @@ header {
     width: 100vw;
     object-fit: cover;
     margin-bottom: 2rem;
+    object-position: top -5rem right 0;
   }
 }
 
@@ -465,7 +469,7 @@ footer {
 
 .call_me_button:hover {
   /* background-color: tomato; */
-  background-color: steelblue;
+  background-color: wheat;
   /* border-width: .2rem; */
   /* color: white; */
   /* height: 3.1rem;
@@ -602,6 +606,29 @@ footer {
     top: 2rem;
   }
   
+  #scrollme {
+    display: block;
+    position: absolute;
+    bottom: .5rem;
+
+    animation: pulse 900ms ease-in-out infinite alternate;
+
+    span {
+      display: flex;
+      flex-direction: column;
+
+      img {
+        transform: rotate(-90deg);
+        height: 2rem;
+      }
+
+      p {
+        /* color: white; */
+        font-weight: 400;
+      }
+    }
+  }
+
   #blurb {
     /* position: absolute; */
 
@@ -635,6 +662,10 @@ footer {
     span {
       font-weight: 600;
       color: wheat;
+
+      a {
+        color: inherit;
+      }
     }
   }
 
@@ -782,4 +813,10 @@ footer {
     margin: 0 2rem;
     width: 40rem;
   }
+}
+
+
+@keyframes pulse {
+  from { transform: translateY(0); }
+  to   { transform: translateY(-10px); }
 }
