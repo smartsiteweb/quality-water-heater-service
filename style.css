@@ -413,7 +413,7 @@ footer {
   }
 
   #yelp_icon {
-    display: block;
+    display: inline;
   }
 
   h3 {
