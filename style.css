@@ -105,6 +105,8 @@ header {
   position: relative;
   padding: 0;
   /* padding-left: 1.2rem; */
+  display: flex;
+  flex-direction: column-reverse;
 }
 
 
@@ -112,6 +114,8 @@ header {
   display: flex;
   flex-direction: column;
   position: relative;
+
+  padding: 2rem 1.2rem;
 }
 
 
@@ -119,7 +123,7 @@ header {
   position: absolute;
   height: 6rem;
   transform: scaleX(-1) rotate(-90deg);
-  left: 10rem;
+  left: 11rem;
   top: -1.5rem;
 }
 
@@ -296,6 +300,10 @@ header {
         height: 100%;
       }
     } */
+
+    li {
+      min-width: 100%;
+    }
   }
 
  
@@ -307,13 +315,15 @@ header {
   display: flex;
   flex-direction: column;
 
-  width: 40rem;
-  height: 50rem;
+  /* width: 40rem; */
+  width: calc(100% - 5rem);
+  height: 40rem;
 
   background-color: white;
   border-radius: 1rem;
   padding: 2rem;
-  margin: 0 2rem;
+  margin: 0 .5rem;
+
 
   .review_header {
     height: 5rem;
@@ -330,6 +340,7 @@ header {
       
       p {
         margin-left: 1rem;
+        overflow-y: visible;
       }
     }
 
@@ -344,6 +355,8 @@ header {
 
   p {
     display: block;
+    overflow-y: auto;
+    height: 100%;
   }
 
 }
@@ -375,7 +388,6 @@ footer {
 
   font-size: 1rem;
 
-  text-align: center;
 
   ul {
     display: flex;
@@ -722,6 +734,7 @@ footer {
   
       li {
         width: 50%;
+        min-width: auto;
 
         iframe {
           min-height: 100%;
@@ -729,4 +742,15 @@ footer {
       }
     }
   }
+
+  .review
+  {
+    margin: 0 2rem;
+    width: 40rem;
+  }
+
+  footer {
+    text-align: center;
+  }
+
 }
