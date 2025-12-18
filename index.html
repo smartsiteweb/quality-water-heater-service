@@ -26,34 +26,41 @@
   </header>
 
 
-  <section id="landing">
-    <div id="landing_img_container">
-      <img src="./assets/dave_truck.jpg" />
-    </div>
-  </section>
-
-  <section id="blurb">
-    <div id="blurb-greeting">
-      <h2> <em> Hey! I'm Dave </em> </h2>
+  <div id="hero">
+    <section id="landing">
+      <div id="blurb">
+        <div id="blurb-greeting">
+          <h2> <em> Hey! I'm Dave </em> </h2>
+          
+          <img id="curly" src="./assets/curly_arrow.png" alt="" />
+        </div>
+        
+        <div id="blurb-content">
+          <p> I provide a <span>Quality Water Heater Service</span>. I've been servicing water heaters around San Jose, Oakland, and San Francisco for over 30 years. Give me a call at <span>(408) 679 5820</span>, I'll get it sorted out. </p>
+          
+          <a class="button call_me_button" href="tel:4086795820">
+            Call Me!
+          </a>
+        </div>
+      </div>
+      
+      <div id="landing_img_container">
+        <img src="./assets/dave_truck.jpg" />
+      </div>
+    </section>
   
-      <img id="curly" src="./assets/curly_arrow.png" alt="" />
-    </div>
-
-    <div id="blurb-content">
-      <p> I provide a <span>Quality Water Heater Service</span>. I've been servicing water heaters around San Jose, Oakland, and San Francisco for over 30 years. Give me a call at <span>(408) 679 5820</span>, I'll get it sorted out. </p>
+    <!-- <section id="blurb">
+      
   
-      <a class="button call_me_button" href="tel:4086795820">
-        Call Me!
-      </a>
-    </div>
+    </section> -->
+  </div>
 
-  </section>
 
 
   <section id="services">
     <h2> You're In Good Hands </h2>
 
-    <h3 id="services_license"> I am licensed by the State of California (#756210) </h3>
+    <!-- <h3 id="services_license"> I am licensed by the State of California (#756210) </h3> -->
 
     <!-- <p> 
       Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam corporis voluptas quas, facilis est, excepturi voluptates quo, incidunt minima dolor ex. Maxime commodi voluptatibus cupiditate impedit quidem nam accusantium iusto. 
@@ -63,10 +70,19 @@
 
     <ul id="services_list">
       <li>
+        <h3> Professional Service </h3>
+
+        <p>
+          I'm officially licensed by the State of California <span> (#756210)</span>. You can be sure I know what I'm doing.
+        </p>
+
+      </li>
+
+      <li>
         <h3> Low Prices </h3>
 
         <p>
-          You deserve high quality work for less. I'll do a full water heater replacement for as low as $1500.
+          You deserve high quality work for less. I'll do a full water heater replacement for <span>as low as $1500</span>.
         </p>
         <!-- <img src="./assets/wrench.svg" /> -->
          <!-- <img src="./assets/stock 1.webp" /> -->
@@ -77,7 +93,7 @@
         <h3> Installation and Repairs </h3>
 
         <p>
-          I've been servicing the Greater San Francisco Bay Area for over 30 years. Got a problem? I can get it fixed for you.
+          I've been servicing the Greater San Francisco Bay Area for <span>over 30 years</span>. Got a problem? I can get it fixed for you.
         </p>
         <!-- <img src="./assets/wrench.svg" /> -->
          <!-- <img src="./assets/stock 1.webp" /> -->
@@ -88,7 +104,7 @@
         <h3> 24/7 Availability </h3>
 
         <p>
-          Things don't break on a 9 to 5 schedule. I'll meet you anytime, anywhere.
+          Things don't break on a 9 to 5 schedule. I'll meet you <span>anytime, anywhere</span>.
         </p>
 
         <!-- <img src="./assets/stock 2.jpg" /> -->
@@ -98,7 +114,7 @@
         <h3> Same Day Service, Same Price </h3>
 
         <p>
-          Speed shouldn't come at a price. I'll be there, same day, to solve your problem.
+          Speed shouldn't come at a price. I'll be there, <span>same day</span>, to solve your problem.
         </p>
         <!-- <img src="./assets/stock 3.jpg" /> -->
       </li>
@@ -112,16 +128,165 @@
 
 
   <section id="reviews">
-    <h2> From The Community </h2>
+    <h2 class="section_head"> From The Community </h2>
     
     <div class="Slide">
       
       <ul id="review_slides">
-        <li> <span class="yelp-review" data-review-id="QPcaKJMUnksVcEAC44kivg" data-hostname="www.yelp.com">Read <a href="https://www.yelp.com/user_details?userid=0UneQBQA9u0TD5jBl1NFiA" rel="nofollow noopener">Lauren N.</a>'s <a href="https://www.yelp.com/biz/quality-water-heater-service-santa-clara?hrid=QPcaKJMUnksVcEAC44kivg" rel="nofollow noopener">review</a> of <a href="https://www.yelp.com/biz/LukqoyqIjVoieTvejjvpsg" rel="nofollow noopener">Quality Water Heater Service</a> on <a href="https://www.yelp.com" rel="nofollow noopener">Yelp</a><script src="https://www.yelp.com/embed/widgets.js" type="text/javascript" async></script></span> </li>
+        <li>
+          <div class="review">
+            <div class="review_header">
+              <div>
+                <h2> Lauren N. </h2>
+                <span class="review_stars"> 
+                  <img src="./assets/star-solid.svg" alt=""> 
+                  <img src="./assets/star-solid.svg" alt=""> 
+                  <img src="./assets/star-solid.svg" alt=""> 
+                  <img src="./assets/star-solid.svg" alt=""> 
+                  <img src="./assets/star-solid.svg" alt="">
+                  <p> Oct 26, 2025 </p>
+                </span>
+              </div>
+              
+              <a id="yelp_icon" href=""> <img src="./assets/yelp-black.svg" alt="" /> </a>
+            </div>
+            <p> They did a great job and were really honest. I called because my water heater (I thought) was making a funny noise. We discussed the cost of replacing it on the phone and I asked them to come to replace it. When they arrived, they realized it was not actually my water heater but an adjacent plumbing issue. They then recommended against the water heater replacement even though that would have been the more lucrative move for them. They did the right thing. I am very grateful for their honesty and responsiveness. They came right away on a Sunday! They also made referrals to repair the adjacent plumbing issue. </p>
+          </div>
+        </li>
+        
+        
+        <li>
+          <div class="review">
+            <div class="review_header">
+              <div>
+                <h2> Jeff B. </h2>
+                <span class="review_stars"> 
+                  <img src="./assets/star-solid.svg" alt=""> 
+                  <img src="./assets/star-solid.svg" alt=""> 
+                  <img src="./assets/star-solid.svg" alt=""> 
+                  <img src="./assets/star-solid.svg" alt=""> 
+                  <img src="./assets/star-solid.svg" alt="">
+                  <p> Feb 15, 2025 </p>
+                </span>
+              </div>
+              
+              <a id="yelp_icon" href=""> <img src="./assets/yelp-black.svg" alt="" /> </a>
+            </div>
+
+            <p> 2/15/25 Saturday morning 8:45 AM. My wife woke up this morning and discovered we have no hot water. I checked the water heater and noticed the controller's light was not blinking at all. I attempted to light the pilot light but the light didn't come on. <br><br>
+I called David and he answered promptly. David talked me through the steps for resetting the controller and relighting the pilot. The light is now flashing once every 3 seconds and I can hear the unit heating up the water. <br><br>
+
+Thank you David! </p>
+          </div>
+        </li>
+        
+        <li>
+          <div class="review">
+            <div class="review_header">
+              <div>
+                <h2> Eric W. </h2>
+                <span class="review_stars"> 
+                  <img src="./assets/star-solid.svg" alt=""> 
+                  <img src="./assets/star-solid.svg" alt=""> 
+                  <img src="./assets/star-solid.svg" alt=""> 
+                  <img src="./assets/star-solid.svg" alt=""> 
+                  <img src="./assets/star-solid.svg" alt="">
+                  <p> Mar 8, 2024 </p>
+                </span>
+              </div>
+              
+              <a id="yelp_icon" href=""> <img src="./assets/yelp-black.svg" alt="" /> </a>
+            </div>
+
+            <p> I contacted Dave for a water heater pilot light that wouldn't stay on. Dave first tried to solve the issue over the phone. After explaining to Dave I tried fixing it. Dave explained the best option at this point for a 13 year old water heater was to replace it instead of replacing parts. I really appreciate Dave trying to help. You don't see this type of service these days. <br><br>
+
+Spoke with Dave in the morning and by the afternoon, had new water heater installed. Installed an American made water heater as Dave recommended.<br><br>
+
+Couldn't be more happier with the quality of work. Competitive pricing, to be honest, I didn't call anyone else. I just wanted an honest person that does good work. I'm glad to found Dave and will recommend to family and friends. </p>
+          </div>
+        </li>
+        
+        <li>
+          <div class="review">
+
+            <div class="review_header">
+              <div>
+                <h2> Michael B. </h2>
+                <span class="review_stars"> 
+                  <img src="./assets/star-solid.svg" alt=""> 
+                  <img src="./assets/star-solid.svg" alt=""> 
+                  <img src="./assets/star-solid.svg" alt=""> 
+                  <img src="./assets/star-solid.svg" alt=""> 
+                  <img src="./assets/star-solid.svg" alt="">
+                  <p> Sep 12, 2024 </p>
+                </span>
+              </div>
+              
+              <a id="yelp_icon" href=""> <img src="./assets/yelp-black.svg" alt="" /> </a>
+            </div>
+
+            <p> As with 99% of the other reviews below, I am now a member of the David Fan Club also. My water heater broke yesterday at about 4pm and David called me back within 5 minutes. He provided an honest evaluation and fair estimate over the phone. Water Heaters Only provided a vague quote in the range of $500 to $1000 higher than David for the same service. David showed up the next day at 10am as promised and the install was completed by 12 noon. Very satisfied and would use Quality Water Heater Service again.
+As a General Contractor myself, I know BS instantly because I encounter it daily. David was the real deal. </p>
+          </div>
+        </li>
+        
+        
+        <li>
+          <div class="review">
+            <div class="review_header">
+              <div>
+                <h2> Hylary L. </h2>
+                <span class="review_stars"> 
+                  <img src="./assets/star-solid.svg" alt=""> 
+                  <img src="./assets/star-solid.svg" alt=""> 
+                  <img src="./assets/star-solid.svg" alt=""> 
+                  <img src="./assets/star-solid.svg" alt=""> 
+                  <img src="./assets/star-solid.svg" alt="">
+                  <p> Mar 7, 2025 </p>
+                </span>
+              </div>
+              
+              <a id="yelp_icon" href=""> <img src="./assets/yelp-black.svg" alt="" /> </a>
+            </div>
+            <p> We had a wonderful experience with David from start to finish. Immediately after discovering our pilot light was out, David called us to try to trouble shoot the issue and then arrived promptly the next morning to replace our water heater. He was kind, thorough and worked quickly. He also gave us additional advice on some issues he discovered with our plumbing in general that we really appreciated. Very reasonable price for excellent service by a very knowledgeable professional. Would highly recommend! </p>
+          </div>
+        </li>
+        
+        <li>
+          <div class="review">
+            <div class="review_header">
+              <div>
+                <h2> Brian L. </h2>
+                <span class="review_stars"> 
+                  <img src="./assets/star-solid.svg" alt=""> 
+                  <img src="./assets/star-solid.svg" alt=""> 
+                  <img src="./assets/star-solid.svg" alt=""> 
+                  <img src="./assets/star-solid.svg" alt=""> 
+                  <img src="./assets/star-solid.svg" alt="">
+                  <p> Sep 25, 2024 </p>
+                </span>
+              </div>
+              
+              <a id="yelp_icon" href=""> <img src="./assets/yelp-black.svg" alt="" /> </a>
+            </div>
+
+            <p> Called in to get the quote, David honestly told me the pros and cons of each option. With only two people in the house, he told me to scale down from 75 to 50 gallons tank. And don't need the high recovery model given I have the recirculating pump installed. This can save me some gas bills.<br><br>
+
+I got two quotes elsewhere, David's quote was the most competitive. The other guy asked me the final price when he didn't get the deal. He said to me the number must be a mistake, the price shouldn't be this low. So you know how competitive of David's quote.<br><br>
+
+David spent ton of efforts to take out the old large 75 gallons tank due to the tight spacing. On top of that, he installed a new ball valve, two flexible pipes, drain pan and extension of the exhaust line. He only asked $100 for the extra parts and work.<br><br>
+
+If you need a quote for water heater, don't hesitate to give David a call. You will get the best price and service you deserve. </p>
+          </div>
+        </li>
+
+
+
+        <!-- <li> <span class="yelp-review" data-review-id="QPcaKJMUnksVcEAC44kivg" data-hostname="www.yelp.com">Read <a href="https://www.yelp.com/user_details?userid=0UneQBQA9u0TD5jBl1NFiA" rel="nofollow noopener">Lauren N.</a>'s <a href="https://www.yelp.com/biz/quality-water-heater-service-santa-clara?hrid=QPcaKJMUnksVcEAC44kivg" rel="nofollow noopener">review</a> of <a href="https://www.yelp.com/biz/LukqoyqIjVoieTvejjvpsg" rel="nofollow noopener">Quality Water Heater Service</a> on <a href="https://www.yelp.com" rel="nofollow noopener">Yelp</a><script src="https://www.yelp.com/embed/widgets.js" type="text/javascript" async></script></span> </li>
         <li> <span class="yelp-review" data-review-id="yZL00bdzv3VVqMR0MxSKUg" data-hostname="www.yelp.com">Read <a href="https://www.yelp.com/user_details?userid=j2z1w-7P2ia-wwhBHmWM2Q" rel="nofollow noopener">Srini V.</a>'s <a href="https://www.yelp.com/biz/quality-water-heater-service-santa-clara?hrid=yZL00bdzv3VVqMR0MxSKUg" rel="nofollow noopener">review</a> of <a href="https://www.yelp.com/biz/LukqoyqIjVoieTvejjvpsg" rel="nofollow noopener">Quality Water Heater Service</a> on <a href="https://www.yelp.com" rel="nofollow noopener">Yelp</a><script src="https://www.yelp.com/embed/widgets.js" type="text/javascript" async></script></span> </li>
         <li> <span class="yelp-review" data-review-id="9RH3ljeVN95CkvRG3OsoIw" data-hostname="www.yelp.com">Read <a href="https://www.yelp.com/user_details?userid=XW3y5s9tI5vBVvFQgVU3Ig" rel="nofollow noopener">Mario ..</a>'s <a href="https://www.yelp.com/biz/quality-water-heater-service-santa-clara?hrid=9RH3ljeVN95CkvRG3OsoIw" rel="nofollow noopener">review</a> of <a href="https://www.yelp.com/biz/LukqoyqIjVoieTvejjvpsg" rel="nofollow noopener">Quality Water Heater Service</a> on <a href="https://www.yelp.com" rel="nofollow noopener">Yelp</a><script src="https://www.yelp.com/embed/widgets.js" type="text/javascript" async></script></span> </li>
         <li> <span class="yelp-review" data-review-id="l5bexYQwQ7FaHetwG5Y9Bg" data-hostname="www.yelp.com">Read <a href="https://www.yelp.com/user_details?userid=wglQp_XDDGZiASr2r620Jw" rel="nofollow noopener">Jeff B.</a>'s <a href="https://www.yelp.com/biz/quality-water-heater-service-santa-clara?hrid=l5bexYQwQ7FaHetwG5Y9Bg" rel="nofollow noopener">review</a> of <a href="https://www.yelp.com/biz/LukqoyqIjVoieTvejjvpsg" rel="nofollow noopener">Quality Water Heater Service</a> on <a href="https://www.yelp.com" rel="nofollow noopener">Yelp</a><script src="https://www.yelp.com/embed/widgets.js" type="text/javascript" async></script></span> </li>
-        <li> <span class="yelp-review" data-review-id="TynEPn2YX54p1F5uGdweew" data-hostname="www.yelp.com">Read <a href="https://www.yelp.com/user_details?userid=mTLUtg1xuPmkj5PyJNqsOw" rel="nofollow noopener">Eric W.</a>'s <a href="https://www.yelp.com/biz/quality-water-heater-service-santa-clara?hrid=TynEPn2YX54p1F5uGdweew" rel="nofollow noopener">review</a> of <a href="https://www.yelp.com/biz/LukqoyqIjVoieTvejjvpsg" rel="nofollow noopener">Quality Water Heater Service</a> on <a href="https://www.yelp.com" rel="nofollow noopener">Yelp</a><script src="https://www.yelp.com/embed/widgets.js" type="text/javascript" async></script></span> </li>
+        <li> <span class="yelp-review" data-review-id="TynEPn2YX54p1F5uGdweew" data-hostname="www.yelp.com">Read <a href="https://www.yelp.com/user_details?userid=mTLUtg1xuPmkj5PyJNqsOw" rel="nofollow noopener">Eric W.</a>'s <a href="https://www.yelp.com/biz/quality-water-heater-service-santa-clara?hrid=TynEPn2YX54p1F5uGdweew" rel="nofollow noopener">review</a> of <a href="https://www.yelp.com/biz/LukqoyqIjVoieTvejjvpsg" rel="nofollow noopener">Quality Water Heater Service</a> on <a href="https://www.yelp.com" rel="nofollow noopener">Yelp</a><script src="https://www.yelp.com/embed/widgets.js" type="text/javascript" async></script></span> </li> -->
       </ul>
       
       <div class="slide_button_row">
