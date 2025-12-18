@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Generate Invoice </title>
+    <link rel="stylesheet" href="./reset.css">
+    <link rel="stylesheet" href="./invoice.css">
+    <!-- <link rel="stylesheet" href="./style.css"> -->
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/3.0.3/jspdf.umd.min.js"></script>
+    <script src="invoice.js"></script>
+</head>
+<body>
+  <form id="invoice_form">
+    <div>
+      <label for="boiler_a"> A </label>
+      <input id="boiler_a" type="radio" name="water_boiler" value="A" checked />
+    </div>
+
+    <div>
+      <label for="boiler_b"> B </label>
+      <input id="boiler_b" type="radio" name="water_boiler" value="B" />
+    </div>
+
+    <div>
+      <label for="boiler_c"> C </label>
+      <input id="boiler_c" type="radio" name="water_boiler" value="C" />
+    </div>
+
+    <label for="customer_name"> Customer Name </label>
+    <input id="customer_name" type="text" name="customer_name">
+    
+    <label for="cost"> Total Cost </label>
+    <input id="cost" type="number" name="total_cost">
+
+    <input type="submit" value="Generate Invoice">
+  </form>
+
+
+  <button id="download_button" disabled> Download Invoice </button>
+
+
+
+  <h1 id="preview-text"> Preview </h1>
+
+  <div id="invoice-border">
+    <section id="generated_invoice">
+      <h1 id="invoice_head"> Invoice (<span id="date">Today's Date</span>) </h1>
+  
+      <div id="biller">
+        <h1> Quality Water Heater Service </h1>
+        <h2> 1064 Reed St </h2>
+        <h2> Santa Clara, CA 95050 </h2>
+      </div>
+  
+      <div id="bill_to">
+        <h1> Bill To </h1>
+  
+        <h2 id="bill_to_name"> [Client Name] </h2>
+      </div>
+  
+      <table>
+        <tr id="table_head_row">
+          <th> Service </th>
+          <th> Total Cost </th>
+        </tr>
+  
+        <tr>
+          <td id="table_service_name"> [Service Name] </td>
+          <td> $<span id="table_service_cost">[Cost]</span> </td>
+        </tr>
+      </table>
+  
+  
+      <div id="terms_conditions">
+        <h1> Terms and Conditions </h1>
+        <h2> Please mail checks within 14 days of this invoice date </h2>
+        <h2> Please make checks payable to: Quality Water Heater Service </h2>
+        <h3> This invoice was generated on <span id="gen_date">[Date]</span> at <span id="gen_time">[Time]</span> </h3>
+      </div>
+    </section>
+  </div>
+
+
+
+
+
+</body>
+</html>
