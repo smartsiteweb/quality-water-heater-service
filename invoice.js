@@ -74,7 +74,24 @@ const generatePdf = (e) => {
 
   doc.html(invoiceEl, {
     callback: function (doc) {
-      doc.save();
+
+      const blob = doc.output('blob');
+
+      let data = new FormData();
+      data.append('pdf', blob);
+      data.append('pw', 'dave');
+
+      console.log(data);
+
+
+      fetch('http://localhost:3000/invoice', {
+        method: 'POST',
+        body: data,
+      }).then(() => { console.log('yippee') });
+
+
+
+
       invoiceBorder.style['transform'] = 'scale(.5)';
     },
     width: 8.5,
