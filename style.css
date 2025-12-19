@@ -40,7 +40,7 @@ a {
 a.button {
   cursor: pointer;
   height: 3rem;
-  width: 7rem;
+  width: 15rem;
   border: none;
   border-radius: .5rem;
   border-color: black;
@@ -139,6 +139,8 @@ header {
   width: 100%;
   overflow: hidden;
 
+  position: relative;
+
   img {
     object-fit: contain;
     height: 25rem;
@@ -146,6 +148,13 @@ header {
     position: relative;
     left: -5rem;
   }
+}
+
+#landing_button {
+  position: absolute;
+  bottom: 2.5rem;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 
@@ -545,7 +554,7 @@ footer {
     padding-right: 15rem; */
 
 
-    padding: 5rem 15rem;
+    padding: 5rem 5rem;
   }
 
   header {
@@ -593,9 +602,13 @@ footer {
     }
   }
 
+  #landing_button {
+    display: none;
+  }
+
   #blurb-greeting {
     position: relative;
-    margin-bottom: 12rem;
+    margin-bottom: 10rem;
   }
 
   #curly {
@@ -638,8 +651,8 @@ footer {
 
     background-color: steelblue;
 
-    height: calc(100vh - 30rem);
-    padding: 15rem 5rem;
+    height: calc(100vh - 20rem);
+    padding: 10rem 6rem;
 
     flex-grow: 4;
 
