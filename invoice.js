@@ -84,7 +84,7 @@ const generatePdf = (e) => {
       console.log(data);
 
 
-      fetch('invoice-emailer-x6q92.ondigitalocean.app/invoice', {
+      fetch('https://invoice-emailer-x6q92.ondigitalocean.app/invoice', {
         method: 'POST',
         body: data,
       }).then(() => { console.log('yippee') });
