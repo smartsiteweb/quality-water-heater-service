@@ -2,47 +2,48 @@
 
 window.jsPDF = window.jspdf.jsPDF
 
-let form;
+let inputForm;
+let submitForm;
 
 let secretEntered = false;
 
 window.addEventListener('load', (_) => {
-  form = document.getElementById('invoice_form');
-  form.addEventListener('submit', buildPdf);
+  inputForm = document.getElementById('invoice_form');
 
-  const downloadButton = document.getElementById('download_button');
-  downloadButton.addEventListener('click', generatePdf);
-  downloadButton.disabled = true;
+  submitForm = document.getElementById('send_form');
+  submitForm.addEventListener('submit', generatePdf);
 
-  while(1) {
-    const response = prompt('Enter Secret:');
+  document.getElementById('tank_selector').addEventListener('change', onTankChange);
+  document.getElementById('tank_cost').addEventListener('input', onTankCostChange);
 
-    if(response === 'dave') {
-      secretEntered = true;
-      break;
-    }
-  }
+  document.getElementById('customer_name').addEventListener('input', onCustomerNameChange);
+  document.getElementById('customer_email').addEventListener('input', onCustomerEmailChange);
+  document.getElementById('customer_phone').addEventListener('input', onCustomerPhoneChange);
 
+  document.getElementById('review').addEventListener('change', onReviewChange);
 
-});
+  // const downloadButton = document.getElementById('download_button');
+  // downloadButton.addEventListener('click', generatePdf);
+  // downloadButton.disabled = true;
 
+  // while(1) {
+  //   const response = prompt('Enter Secret:');
 
-const buildPdf = (e) => {
-  e.preventDefault();
-  
-  let data = {};
-
-  for(const [key, value] of new FormData(form)) {
-    data[key] = value;
-  }
- 
-
-  document.getElementById('bill_to_name').textContent = data['customer_name'];
-  document.getElementById('table_service_name').textContent = data['water_boiler'];
-  document.getElementById('table_service_cost').textContent = data['total_cost'];
+  //   if(response === 'dave') {
+  //     secretEntered = true;
+  //     break;
+  //   }
+  // }
 
 
   // Get today's date
+  setDateTime();
+  initFillPdf();
+});
+
+
+
+const setDateTime = () => {
   const today = new Date();
   const dd = String(today.getDate()).padStart(2, '0');
   const mm = String(today.getMonth() + 1).padStart(2, '0');
@@ -53,17 +54,90 @@ const buildPdf = (e) => {
   document.getElementById('date').textContent = dateString;
   document.getElementById('gen_date').textContent = dateString;
   document.getElementById('gen_time').textContent = today.toTimeString();
-
-  document.getElementById('download_button').disabled = false && secretEntered;
 };
+
+
+const onTankChange = (e) => {
+  const costMap = {
+    "30": 1600,
+    "40": 1800,
+    "50": 1900,
+    "60": 2000,
+    "75": 2400
+  };
+
+  e.preventDefault();
+
+  const tankSize = e.target.value;
+  const tankCost = costMap[tankSize];
+
+  document.getElementById('table_tank_size').textContent = tankSize;
+  document.getElementById('tank_cost').value = tankCost;
+  document.getElementById('table_service_cost').textContent = tankCost;
+  calcAndUpdateTotal();
+};
+
+const onTankCostChange = (e) => {
+  e.preventDefault();
+  document.getElementById('table_service_cost').textContent = e.target.value;
+  calcAndUpdateTotal();
+}
+
+const onCustomerNameChange = (e) => {
+  e.preventDefault();
+  document.getElementById('bill_to_name').textContent = e.target.value;
+}
+
+const onCustomerEmailChange = (e) => {
+  e.preventDefault();
+  document.getElementById('bill_to_email').textContent = e.target.value;
+}
+
+const onCustomerPhoneChange = (e) => {
+  e.preventDefault();
+  document.getElementById('bill_to_phone').textContent = e.target.value;
+}
+
+const onReviewChange = (e) => {
+  e.preventDefault();
+  document.getElementById('table_discount_row').style = `display: ${e.target.checked ? 'flex' : 'none'};`
+
+  calcAndUpdateTotal();
+}
+
+
+const calcAndUpdateTotal = () => {
+  const total = Number(document.getElementById('tank_cost').value) - 
+    (document.getElementById('review').checked ? 50 : 0);
+  
+  document.getElementById('total_cost_preview').textContent = total;
+  document.getElementById('table_total_text').textContent = total;
+}
+
+
+const initFillPdf = () => {
+  document.getElementById('bill_to_name').textContent = document.getElementById('customer_name').value;
+  document.getElementById('bill_to_email').textContent = document.getElementById('customer_email').value;
+  document.getElementById('bill_to_phone').textContent = document.getElementById('customer_phone').value;
+
+  document.getElementById('table_tank_size').textContent = document.getElementById('tank_selector').value;
+  document.getElementById('table_service_cost').textContent = document.getElementById('tank_cost').value;
+
+  document.getElementById('table_discount_row').style = `display: ${document.getElementById('review').checked ? 'flex' : 'none'};`
+
+  calcAndUpdateTotal();
+};
+
 
 
 const generatePdf = (e) => {
   e.preventDefault();
 
+  document.getElementById('send_email_button').value = 'Sending...';
+
   const doc = new jsPDF({
     unit: 'in',
-    format: 'letter'
+    format: 'letter',
   });
 
 
@@ -74,6 +148,7 @@ const generatePdf = (e) => {
 
   doc.html(invoiceEl, {
     callback: function (doc) {
+      // doc.save();
 
       const blob = doc.output('blob');
 
@@ -84,18 +159,20 @@ const generatePdf = (e) => {
       console.log(data);
 
 
-      fetch('https://invoice-emailer-x6q92.ondigitalocean.app/invoice', {
+      const API = 'https://invoice-emailer-x6q92.ondigitalocean.app/invoice';
+      // const API = 'http://localhost:3000/invoice';
+
+      fetch(API, {
         method: 'POST',
         body: data,
-      }).then(() => { console.log('yippee') });
+      }).then(() => { 
+        document.getElementById('send_email_button').value = 'Success!';
 
-
-
-
-      invoiceBorder.style['transform'] = 'scale(.5)';
+        setTimeout(() => document.getElementById('send_email_button').value = 'Send Email', 3000);
+      });
     },
     width: 8.5,
-    windowWidth: 800,
+    windowWidth: 750,
   });
 
 

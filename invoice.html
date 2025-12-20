@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> Generate Invoice </title>
-    <link rel="stylesheet" href="./reset.css">
+    <!-- <link rel="stylesheet" href="./reset.css"> -->
     <link rel="stylesheet" href="./invoice.css">
     <!-- <link rel="stylesheet" href="./style.css"> -->
     <script src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>
@@ -13,36 +13,61 @@
 </head>
 <body>
   <form id="invoice_form">
-    <div>
-      <label for="boiler_a"> A </label>
-      <input id="boiler_a" type="radio" name="water_boiler" value="A" checked />
-    </div>
+    <fieldset>
+      <legend> Configure Tank </legend>
 
-    <div>
-      <label for="boiler_b"> B </label>
-      <input id="boiler_b" type="radio" name="water_boiler" value="B" />
-    </div>
+      <div>
+        <label for="tank_selector"> Size (Gallons) </label>
+        <select name="tank_selector" id="tank_selector">
+          <option value="30"> 30 </option>
+          <option value="40"> 40 </option>
+          <option value="50"> 50 </option>
+          <option value="60"> 60 </option>
+          <option value="75"> 75 </option>
+          <option value="custom"> Custom </option>
+        </select>
+      </div>
 
-    <div>
-      <label for="boiler_c"> C </label>
-      <input id="boiler_c" type="radio" name="water_boiler" value="C" />
-    </div>
+      <div>
+        <label for="cost"> Cost </label>
+        <input id="tank_cost" type="number" name="tank_cost" value="1600">
+      </div>
+    </fieldset>
 
-    <label for="customer_name"> Customer Name </label>
-    <input id="customer_name" type="text" name="customer_name">
+    <fieldset>
+      <legend> Customer Details </legend>
+      
+      <div>
+        <label for="customer_name"> Name </label>
+        <input id="customer_name" type="text" name="customer_name">
+      </div>
+
+      <div>
+        <label for="customer_email"> Email </label>
+        <input id="customer_email" type="text" name="customer_email">
+      </div>
+  
+      <div>
+        <label for="customer_phone"> Phone </label>
+        <input id="customer_phone" type="text" name="customer_phone">
+      </div>
+    </fieldset>
     
-    <label for="cost"> Total Cost </label>
-    <input id="cost" type="number" name="total_cost">
+    <fieldset>
+      <legend> Final Cost </legend>
 
-    <input type="submit" value="Generate Invoice">
+      <div>
+        <label for="review"> Review Discount </label>
+        <input type="checkbox" id="review" name="review" />
+      </div>
+
+      <div>
+        <label id="total_label"> Total: $<span id="total_cost_preview"></span> </label>
+        <!-- <input id="cost" type="number" name="total_cost"> -->
+      </div>
+    </fieldset>
   </form>
 
-
-  <button id="download_button" disabled> Download Invoice </button>
-
-
-
-  <h1 id="preview-text"> Preview </h1>
 
   <div id="invoice-border">
     <section id="generated_invoice">
@@ -58,17 +83,29 @@
         <h1> Bill To </h1>
   
         <h2 id="bill_to_name"> [Client Name] </h2>
+        <h2 id="bill_to_email"> [Client Email] </h2>
+        <h2 id="bill_to_phone"> [Client Phone] </h2>
       </div>
   
       <table>
         <tr id="table_head_row">
           <th> Service </th>
-          <th> Total Cost </th>
+          <th> Charge </th>
         </tr>
   
         <tr>
-          <td id="table_service_name"> [Service Name] </td>
-          <td> $<span id="table_service_cost">[Cost]</span> </td>
+          <td id="table_service_name"> <span id="table_tank_size">30</span> Gallon Tank Service </td>
+          <td> $<span id="table_service_cost">1600</span> </td>
+        </tr>
+
+        <tr id="table_discount_row">
+          <td> Review Discount </td>
+          <td> -$50 </td>
+        </tr>
+
+        <tr id="table_total_row"> 
+          <td> Total </td>
+          <td> $<span id="table_total_text">[Total]</span> </td>
         </tr>
       </table>
   
@@ -82,8 +119,17 @@
     </section>
   </div>
 
+  <form id="send_form">
+    <fieldset>
+      <div>
+        <label for="review"> Password </label>
+        <input type="password" id="pw" name="pw" />
+      </div>
 
+      <input id="send_email_button" type="submit" value="Send Email">
+    </fieldset>
 
+  </form>
 
 
 </body>

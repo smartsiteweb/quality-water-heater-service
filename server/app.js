@@ -8,7 +8,7 @@ const port = 3000;
 
 
 const transporter = nodemailer.createTransport({
-    host: 'smtp-relay.gmail.com',
+    host: 'email-smtp.us-west-1.amazonaws.com',
     port: 587,
     auth: {
         user: process.env.USER_ID,
@@ -16,7 +16,6 @@ const transporter = nodemailer.createTransport({
     }
 });
 
-// const parser = bodyParser.
 console.log(process.env.USER_ID)
 console.log(process.env.USER_KEY)
 
@@ -51,10 +50,9 @@ app.post('/invoice', (req, res) => {
       ]
     }).then(() => {
       console.log('Email sent');
+      res.send('ping!');
     });
   });
-
-  res.send('ping!');
 })
 
 app.listen(port, () => {
