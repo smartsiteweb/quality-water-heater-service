@@ -61,7 +61,7 @@ header {
   /* position: absolute; */
   width: 100%;
 
-  /* background-color: steelblue; */
+  /* background-color: rgb(43, 109, 163); */
 
   height: 4rem;
 
@@ -76,7 +76,8 @@ header {
   z-index: 3;
 
   /* background-color: rgba(256, 256, 256, .7); */
-  background-color: rgba(70, 130, 180, .9);
+  background-color: rgb(43, 109, 163);
+  color: white;
 }
 
 #header_span {
@@ -150,6 +151,22 @@ header {
   }
 }
 
+#landing_toast {
+  position: absolute;
+  right: 0;
+  top: 4rem;
+  background-color: rgb(43, 109, 163);
+  color: white;
+  padding: 1rem;
+  font-size: 1rem;
+  font-weight: 600;
+
+  border: 2px solid black;
+  border-top-left-radius: 1.5rem;
+  border-bottom-left-radius: 1.5rem;
+  border-right: 0;
+}
+
 #landing_button {
   position: absolute;
   bottom: 2.5rem;
@@ -184,7 +201,7 @@ header {
   /* margin-bottom: 1.2rem; */
 
   h3 {
-    color: #f7f7f7;
+    color: wheat;
   }
 
   span {
@@ -198,7 +215,8 @@ header {
     display: flex;
     flex-direction: column;
 
-    background-color: steelblue;
+    background-color: rgb(43, 109, 163);
+    color: #e3e3e3;
 
     padding: 2rem;
 
@@ -235,7 +253,7 @@ header {
     right: calc(-12.5% + 2rem);
 
     p, h3 {
-      margin-left: 2rem;
+      margin-left: 3rem;
     }
   }
 
@@ -249,7 +267,7 @@ header {
 
 
 #reviews {
-  background-color: steelblue;
+  background-color: rgb(43, 109, 163);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -333,7 +351,8 @@ header {
 
   /* width: 40rem; */
   width: calc(100% - 5rem);
-  height: 40rem;
+  height: 28rem;
+  overflow-y: auto;
 
   background-color: white;
   border-radius: 1rem;
@@ -401,7 +420,7 @@ header {
 
 
 footer {
-  background-color: #4682b4;
+  background-color: rgb(43, 109, 163);
   /* color: #f7f7f7; */
 
   padding: 1.2rem;
@@ -507,8 +526,9 @@ footer {
   #landing_img_container {
     img {
       width: 100vw;
-      object-fit: unset;
-      height: auto;
+      height: 40vh;
+      object-fit: cover;
+      /* height: auto; */
       left: 0;
     }
   }
@@ -535,7 +555,7 @@ footer {
 
 
 /* desktop styling */
-@media screen and (min-width: 1600px)
+@media screen and (min-width: 1200px)
 {
   body {
     /* background-color: red; */
@@ -559,7 +579,7 @@ footer {
 
   header {
     /* display: none; */
-    /* background-color: steelblue; */
+    /* background-color: rgb(43, 109, 163); */
     visibility: hidden;
     height: 0;
     /* border-bottom: 1px solid black; */
@@ -573,7 +593,7 @@ footer {
 
   #landing {
     height: 100vh;
-    background-color: steelblue;
+    background-color: rgb(43, 109, 163);
     width: 100vw;
 
     display: flex;
@@ -606,9 +626,14 @@ footer {
     display: none;
   }
 
+  #landing_toast {
+    top: 25vh;
+    font-size: 1.2rem;
+  }
+
   #blurb-greeting {
     position: relative;
-    margin-bottom: 10rem;
+    margin-bottom: 5rem;
   }
 
   #curly {
@@ -649,10 +674,10 @@ footer {
     justify-content: space-around;
     align-items: center;
 
-    background-color: steelblue;
+    background-color: rgb(43, 109, 163);
 
-    height: calc(100vh - 20rem);
-    padding: 10rem 6rem;
+    height: calc(100vh - 12rem);
+    padding: 6rem 6rem;
 
     flex-grow: 4;
 
@@ -662,6 +687,10 @@ footer {
       margin: 0;
       color: white;
     }
+  }
+
+  #blurb-greeting {
+    margin: 0;
   }
 
   #blurb-content {
@@ -749,7 +778,7 @@ footer {
 
       border-radius: 1rem;
       border-style: solid;
-      border-color: steelblue;
+      border-color: rgb(43, 109, 163);
       border-width: 1px;
 
       padding: 2rem;
@@ -790,20 +819,28 @@ footer {
 
 
   #about {
-    width: 90rem;
+    /* width: 75vw;
     position: relative;
     left: 50%;
-    transform: translateX(-50%);
+    transform: translateX(-50%); */
+
+    img {
+      left: initial;
+      object-position: initial;
+    }
   }
 
   #about-content {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
 
     img {
-      height: 40rem;
+      /* height: 40rem; */
       width: 30rem;
+      margin: 0;
+      display: block;
     }
   }
 
