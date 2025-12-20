@@ -17,7 +17,8 @@ const transporter = nodemailer.createTransport({
 });
 
 // const parser = bodyParser.
-
+console.log(process.env.USER_ID)
+console.log(process.env.USER_KEY)
 
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
