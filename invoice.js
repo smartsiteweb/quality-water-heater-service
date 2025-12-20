@@ -169,6 +169,10 @@ const generatePdf = (e) => {
         document.getElementById('send_email_button').value = 'Success!';
 
         setTimeout(() => document.getElementById('send_email_button').value = 'Send Email', 3000);
+      }).catch(() => {
+        document.getElementById('send_email_button').value = 'Something went wrong...';
+
+        setTimeout(() => document.getElementById('send_email_button').value = 'Send Email', 3000);
       });
     },
     width: 8.5,
