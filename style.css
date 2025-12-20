@@ -1036,7 +1036,8 @@ footer {
     gap: 2rem;
 
     li {
-      max-height: 14rem;
+      height: 20rem;
+      max-height: 20rem;
     }
   }
 
