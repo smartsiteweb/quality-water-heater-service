@@ -67,7 +67,7 @@ class SnsStream {
 
   consume() {
     const streamCopy = [...this.#stream];
-    this.#stream = 0;
+    this.#stream = [];
     return streamCopy;
   }
 
@@ -83,6 +83,13 @@ class SnsStream {
       for(const r of body.bounce.bouncedRecipients) {
         sendString += `\tRecipient: ${r.emailAddress}\n`
         sendString += `\tCode: ${r.diagnosticCode}\n`
+      }
+      sendString += `At ${body.bounce.timestamp}`;
+    } else if(eventType === 'Complaint') {
+      sendString += 'Complaint: \n';
+
+      for(const r of body.bounce.complainedRecipients) {
+        sendString += `\tRecipient: ${r.emailAddress}\n`
       }
       sendString += `At ${body.bounce.timestamp}`;
     }
