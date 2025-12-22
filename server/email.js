@@ -76,7 +76,9 @@ class SnsStream {
 
     let sendString = '';
 
-    if(eventType === 'Bounce') {
+    if(eventType === 'Send') {
+      sendString += `Send okay`;
+    } else if(eventType === 'Bounce') {
       sendString = body.bounce.bounceType;
       sendString += ' Bounce:\n';
 

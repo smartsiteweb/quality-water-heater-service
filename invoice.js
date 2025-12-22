@@ -7,6 +7,12 @@ let submitForm;
 
 let secretEntered = false;
 
+const API = 'https://invoice-emailer-x6q92.ondigitalocean.app';
+// const API = 'https://localhost:3000';
+
+let alerts = '';
+
+
 window.addEventListener('load', (_) => {
   inputForm = document.getElementById('invoice_form');
 
@@ -39,7 +45,35 @@ window.addEventListener('load', (_) => {
   // Get today's date
   setDateTime();
   initFillPdf();
+
+  setInterval(getSnsStream, 1500);
 });
+
+
+const getSnsStream = () => {
+  fetch(`${API}/snsstream`, {
+    method: 'GET'
+  })
+  .then((r) => {
+    return r.json();
+  })
+  .then((r) => {
+    for(const e of r.events) {
+      if(e.eventType === 'Bounce') {
+        if(e.bounce.bounceType === 'Permanent') {
+          alerts = `<p>Address <span>${e.bounce.bouncedRecipients[0].emailAddress}</span> cannot be sent to. Ask for a new address. Do not try again.</p>` + alerts
+        } else {
+          alerts = `<p>Failed to send to <span>${e.bounce.bouncedRecipients[0].emailAddress}</span>. Try again or ask for a new address.</p>` + alerts;
+        }
+      } else if(e.eventType === 'Complaint') {
+        alerts = `<p>Address <span>${e.complaint.complainedRecipients[0].emailAddress}</span> reported their invoice message as spam.</p>` + alerts;
+      }
+    }
+
+    if(r.events.length !== 0)
+      document.getElementById('alerts').innerHTML = alerts;
+  });
+};
 
 
 const getDateTime = (extraDays = 0) => {
@@ -140,6 +174,8 @@ const initFillPdf = () => {
 const generatePdf = (e) => {
   e.preventDefault();
 
+  alerts = '';
+  document.getElementById('alerts').innerHTML = alerts;
   document.getElementById('send_email_button').value = 'Sending...';
 
   const doc = new jsPDF({
@@ -168,21 +204,38 @@ const generatePdf = (e) => {
       data.append('totalDue', document.getElementById('table_total_text').textContent);
       data.append('recipient', document.getElementById('customer_email').value);
 
-      console.log(data);
-
-
-      const API = 'https://invoice-emailer-x6q92.ondigitalocean.app/invoice';
-      // const API = 'http://localhost:3000/invoice';
-
-      fetch(API, {
+      fetch(`${API}/invoice`, {
         method: 'POST',
         body: data,
-      }).then(() => { 
-        document.getElementById('send_email_button').value = 'Success!';
+      })
+      .then((res) => {
+        return res.text();
+      })
+      .then((res) => { 
+        console.log('asdf');
+
+        document.getElementById('send_email_button').value = 'Sent';
+
+        console.log(res);
+
+        let alert = '';
+        
+        if(res === 'Unauthorized') 
+        {
+          console.log('asfasfsaddf');
+          alert = 'Incorrect password';
+        }
+
+        if(alert !== '')
+          alerts = `<p>${alert}</p>` + alerts;
+
+        document.getElementById('alerts').innerHTML = alerts;
 
         setTimeout(() => document.getElementById('send_email_button').value = 'Send Email', 3000);
-      }).catch(() => {
+      }).catch((e) => {
         document.getElementById('send_email_button').value = 'Something went wrong...';
+
+        console.log(e);
 
         setTimeout(() => document.getElementById('send_email_button').value = 'Send Email', 3000);
       });
