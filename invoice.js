@@ -51,7 +51,7 @@ const getDateTime = (extraDays = 0) => {
 
   const dateString = mm + '/' + dd + '/' + yyyy;
 
-  return [dateString, today.toTimeString];
+  return [dateString, today.toTimeString()];
 }
 
 
@@ -161,7 +161,7 @@ const generatePdf = (e) => {
 
       let data = new FormData();
       data.append('pdf', blob);
-      data.append('pw', 'dave');
+      data.append('pw', document.getElementById('pw').value);
       data.append('name', document.getElementById('customer_name').value);
       data.append('date', getDateTime()[0]);
       data.append('dueDate', getDateTime(14)[0]);

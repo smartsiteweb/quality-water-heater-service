@@ -1,112 +1,90 @@
 const express = require('express');
 const app = express();
 const cors = require('cors');
-const nodemailer = require('nodemailer');
 const bodyParser = require('body-parser');
 const multiparty = require('multiparty');
 const port = 3000;
 
-
-const transporter = nodemailer.createTransport({
-    host: 'email-smtp.us-west-1.amazonaws.com',
-    port: 587,
-    auth: {
-        user: process.env.USER_ID,
-        pass: process.env.USER_KEY
-    }
-});
-
-// console.log(process.env.USER_ID)
-// console.log(process.env.USER_KEY)
+const { sendInvoice, SnsStream } = require('./email');
+const { hashAndVerify } = require('./auth');
 
 app.use(cors());
-// app.use(bodyParser.urlencoded({ extended: true }));
-// app.use(express.static('public'));
 
 const jsonParser = bodyParser.json();
+const snsStream = new SnsStream();
 
 app.get('/', (req, res) => {
   res.send('Hello World!')
 })
 
 app.post('/invoice', (req, res) => {
-  const form = new multiparty.Form();
+  console.log('POST /invoice');
+
+  new multiparty.Form().parse(req, (err, fields, files) => {
+    if(err) {
+      console.log('Bad form');
+
+      res.status(400);
+      res.header('content-type', 'text/plain');
+      res.send('Bad form construction');
+      return;
+    }
 
 
-  form.parse(req, (err, fields, files) => {
-    console.log(fields);
-    console.log(files);
+    const getField = (name) => fields[name][0];
 
     const pdfPath = files['pdf'][0].path;
-    const name = fields['name'][0];
-    const date = fields['date'][0];
-    const dueDate = fields['dueDate'][0];
-    const totalDue = fields['totalDue'][0];
-    const recipient = fields['recipient'][0];
+    const name = getField('name');
+    const date = getField('date');
+    const dueDate = getField('dueDate');
+    const totalDue = getField('totalDue');
+    const recipient = getField('recipient');
+    const pw = getField('pw');
 
-    transporter.sendMail({
-      from: '"Quality Water Heater Service" <dave@qualitywaterheaterservice.com>',
-      to: `${recipient}`,
-      subject: `Invoice for Water Heater Service- Due ${dueDate}`,
-      text: 
-`Dear ${name},
 
-I am reaching out to provide the invoice for servicing your water heater on ${date}. Below is a summary of the invoice:
+    if(!hashAndVerify(pw))
+    {
+      console.log('Bad Password');
 
-Date Issued: ${date}
-Due Date: ${dueDate}
-Total Amount: $${totalDue}
+      res.status(401);
+      res.header('content-type', 'text/plain');
+      res.send('Unauthorized');
+      return;
+    }
 
-For your records, a PDF version of this invoice is also attached.
-
-Please mail your check to 1064 Reed St, Santa Clara, CA 95050 and make it payable to Quality Water Heater Service. If you've already paid, feel free to disregard this email. 
-
-Thank you for choosing Quality Water Heater Service. Should you have any questions, please call me at (408)-679-5820.
-
-Best,
-Dave Kessler
-
-* This is a one-time transactional email. You are not signed up for any marketing emails nor are on any emailing lists.
-** Please do not respond to this email. This account's inbox is not monitored.
-`
-      ,
-      attachments: [
-        {
-          filename: 'invoice.pdf',
-          path: pdfPath
-        }
-      ],
-      headers: {
-        'X-SES-CONFIGURATION-SET': 'waterHeater',
-      },
-    }).then((r) => {
-      console.log('Email sent');
-
-      console.log(r);
-      res.send('ping!');
+    sendInvoice(recipient, name, date, dueDate, totalDue, pdfPath)
+    .then((_) => {
+      console.log(`Email sent: ${recipient}`);
+      res.header('content-type', 'text/plain');
+      res.send('Okay');
+    })
+    .catch((r) => {
+      console.log('Send Error: ', r.toString());
+      res.status(400);
+      res.header('content-type', 'text/plain');
+      res.send(r.toString());
     });
   });
 })
 
 app.post('/sns', jsonParser, (req, res) => {
-  const body = req.body;
+  console.log('POST /sns')
   
-  console.log('Email Bounce:');
+  const body = req.body;
+  snsStream.push(body);
   console.log(body);
-  for(r in body['bouncedRecipients']) {
-    console.log('Recipient: ', r.emailAddress);
-    console.log('Code: ', r.diagnosticCode);
-  }
-
-  console.log();
+  console.log(SnsStream.formatEvent(body));
 });
 
+app.get('/snsstream', (_, res) => {
+  const stream = snsStream.consume();
+  stream.map((b) => SnsStream.formatEvent(b));
 
-// app.all('/sns', (req, res) => {
-//   console.log('any');
-//   console.log(req);
-// });
+  res.status(200);
+  res.header('content-type', 'application/json');
+  res.send(JSON.stringify({'events': stream}));
+});
 
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
+  console.log(`Application starting on port ${port}`)
 })
