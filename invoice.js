@@ -63,7 +63,7 @@ const getSnsStream = () => {
 
       if(e.eventType === 'Bounce') {
         if(e.bounce.bounceType === 'Permanent') {
-          alerts = `<p>Address <span>${e.bounce.bouncedRecipients[0].emailAddress}</span> cannot be sent to. Ask for a new address. Do not try again.</p>` + alerts
+          alerts = `<p>Address <span>${e.bounce.bouncedRecipients[0].emailAddress}</span> cannot be sent to (most likely it doesn't exist). Ask for a new address or check that it is spelled correctly. Please do not try this address again.</p>` + alerts
         } else {
           alerts = `<p>Failed to send to <span>${e.bounce.bouncedRecipients[0].emailAddress}</span>. Try again or ask for a new address.</p>` + alerts;
         }
