@@ -88,12 +88,16 @@ Dave Kessler
   });
 })
 
-app.post('/sns', bodyParser.text(), (req, res) => {
-  console.log('post');
-  console.log(req);
-  console.log(req.body);
+app.post('/sns', jsonParser, (req, res) => {
+  const body = req.body;
+  
+  console.log('Email Bounce:');
+  for(r in body['bouncedRecipients']) {
+    console.log('Recipient: ', r.emailAddress);
+    console.log('Code: ', r.diagnosticCode);
+  }
 
-  console.log("\n\n\n\n");
+  console.log();
 });
 
 
