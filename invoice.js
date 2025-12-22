@@ -59,6 +59,8 @@ const getSnsStream = () => {
   })
   .then((r) => {
     for(const e of r.events) {
+      // console.log(e);
+
       if(e.eventType === 'Bounce') {
         if(e.bounce.bounceType === 'Permanent') {
           alerts = `<p>Address <span>${e.bounce.bouncedRecipients[0].emailAddress}</span> cannot be sent to. Ask for a new address. Do not try again.</p>` + alerts
@@ -67,13 +69,40 @@ const getSnsStream = () => {
         }
       } else if(e.eventType === 'Complaint') {
         alerts = `<p>Address <span>${e.complaint.complainedRecipients[0].emailAddress}</span> reported their invoice message as spam.</p>` + alerts;
+      } else if(e.eventType === 'Delivery') {
+        alerts = `<p>Email Delivered!</p>`;
       }
+      // } else if(e.eventType === )
     }
 
     if(r.events.length !== 0)
-      document.getElementById('alerts').innerHTML = alerts;
+      updateAlerts();
   });
 };
+
+const updateAlerts = () => {
+  if(alerts === '') return;
+
+  const alertsEl = document.getElementById('alerts');
+  const alertsBox = document.getElementById('alert_section');
+
+  alertsEl.innerHTML = alerts;
+
+  const alertNodes = alertsEl.children;
+
+  if(alertNodes.length === 0)
+    alertsBox.style = 'background-color: slateblue';
+  else if(alertNodes.length === 1) {
+    if(alertNodes[0].textContent === 'Email Delivered!') {
+      alertsBox.style = 'background-color: darkgreen';
+    } else {
+      alertsBox.style = 'background-color: red';
+    }
+  } else {
+    alertsBox.style = 'background-color: red';
+  }
+
+}
 
 
 const getDateTime = (extraDays = 0) => {
@@ -175,7 +204,9 @@ const generatePdf = (e) => {
   e.preventDefault();
 
   alerts = '';
-  document.getElementById('alerts').innerHTML = alerts;
+  updateAlerts();
+  document.getElementById('alerts').innerHTML = '<p>Please wait...</p>';
+  document.getElementById('alert_section').style = 'background-color: slateblue';
   document.getElementById('send_email_button').value = 'Sending...';
 
   const doc = new jsPDF({
@@ -212,24 +243,19 @@ const generatePdf = (e) => {
         return res.text();
       })
       .then((res) => { 
-        console.log('asdf');
-
         document.getElementById('send_email_button').value = 'Sent';
-
-        console.log(res);
 
         let alert = '';
         
         if(res === 'Unauthorized') 
         {
-          console.log('asfasfsaddf');
           alert = 'Incorrect password';
         }
 
         if(alert !== '')
           alerts = `<p>${alert}</p>` + alerts;
 
-        document.getElementById('alerts').innerHTML = alerts;
+        updateAlerts();
 
         setTimeout(() => document.getElementById('send_email_button').value = 'Send Email', 3000);
       }).catch((e) => {
