@@ -84,7 +84,7 @@ Dave Kessler
   });
 })
 
-app.post('/sns', bodyParser.text, (req, res) => {
+app.post('/sns', bodyParser.text(), (req, res) => {
   console.log('post');
   console.log(req);
   console.log(req.body);
