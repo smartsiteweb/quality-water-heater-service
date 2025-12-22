@@ -42,18 +42,25 @@ window.addEventListener('load', (_) => {
 });
 
 
-
-const setDateTime = () => {
+const getDateTime = (extraDays = 0) => {
   const today = new Date();
+  today.setDate(today.getDate() + extraDays);
   const dd = String(today.getDate()).padStart(2, '0');
   const mm = String(today.getMonth() + 1).padStart(2, '0');
   const yyyy = today.getFullYear();
 
   const dateString = mm + '/' + dd + '/' + yyyy;
 
-  document.getElementById('date').textContent = dateString;
-  document.getElementById('gen_date').textContent = dateString;
-  document.getElementById('gen_time').textContent = today.toTimeString();
+  return [dateString, today.toTimeString];
+}
+
+
+const setDateTime = () => {
+  const [date, time] = getDateTime();
+
+  document.getElementById('date').textContent = date;
+  document.getElementById('gen_date').textContent = date;
+  document.getElementById('gen_time').textContent = time;
 };
 
 
@@ -155,6 +162,10 @@ const generatePdf = (e) => {
       let data = new FormData();
       data.append('pdf', blob);
       data.append('pw', 'dave');
+      data.append('name', document.getElementById('customer_name').value);
+      data.append('date', getDateTime()[0]);
+      data.append('dueDate', getDateTime(14)[0]);
+      data.append('totalDue', document.getElementById('table_total_text').textContent);
 
       console.log(data);
 
