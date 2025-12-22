@@ -92,6 +92,7 @@ app.post('/sns', jsonParser, (req, res) => {
   const body = req.body;
   
   console.log('Email Bounce:');
+  console.log(body);
   for(r in body['bouncedRecipients']) {
     console.log('Recipient: ', r.emailAddress);
     console.log('Code: ', r.diagnosticCode);
