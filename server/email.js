@@ -80,7 +80,7 @@ class SnsStream {
       sendString = body.bounce.bounceType;
       sendString += ' Bounce:\n';
 
-      for(const r in body.bounce.bouncedRecipients) {
+      for(const r of body.bounce.bouncedRecipients) {
         sendString += `\tRecipient: ${r.emailAddress}\n`
         sendString += `\tCode: ${r.diagnosticCode}\n`
       }
