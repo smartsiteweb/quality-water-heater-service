@@ -72,7 +72,7 @@ app.post('/sns', jsonParser, (req, res) => {
   
   const body = req.body;
   snsStream.push(body);
-  console.log(body);
+  console.log(JSON.stringify(body));
   console.log(SnsStream.formatEvent(body));
 });
 
