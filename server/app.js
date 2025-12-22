@@ -16,12 +16,14 @@ const transporter = nodemailer.createTransport({
     }
 });
 
-console.log(process.env.USER_ID)
-console.log(process.env.USER_KEY)
+// console.log(process.env.USER_ID)
+// console.log(process.env.USER_KEY)
 
 app.use(cors());
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static('public'));
+// app.use(bodyParser.urlencoded({ extended: true }));
+// app.use(express.static('public'));
+
+const jsonParser = bodyParser.json();
 
 app.get('/', (req, res) => {
   res.send('Hello World!')
@@ -82,15 +84,14 @@ Dave Kessler
   });
 })
 
-app.post('/sns', (req, res) => {
+app.post('/sns', jsonParser, (req, res) => {
   console.log('post');
   console.log(req);
+  console.log(req.body);
+
+  console.log("\n\n\n\n");
 });
 
-app.get('/sns', (req, res) => {
-  console.log('get');
-  console.log(req);
-});
 
 // app.all('/sns', (req, res) => {
 //   console.log('any');
