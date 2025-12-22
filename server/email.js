@@ -88,10 +88,10 @@ class SnsStream {
     } else if(eventType === 'Complaint') {
       sendString += 'Complaint: \n';
 
-      for(const r of body.bounce.complainedRecipients) {
+      for(const r of body.complaint.complainedRecipients) {
         sendString += `\tRecipient: ${r.emailAddress}\n`
       }
-      sendString += `At ${body.bounce.timestamp}`;
+      sendString += `At ${body.complaint.timestamp}`;
     }
 
     return sendString;
