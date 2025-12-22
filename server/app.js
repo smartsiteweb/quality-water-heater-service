@@ -42,10 +42,11 @@ app.post('/invoice', (req, res) => {
     const date = fields['date'][0];
     const dueDate = fields['dueDate'][0];
     const totalDue = fields['totalDue'][0];
+    const recipient = fields['recipient'][0];
 
     transporter.sendMail({
       from: '"Quality Water Heater Service" <dave@qualitywaterheaterservice.com>',
-      to: 'bounce@simulator.amazonses.com',
+      to: `${recipient}`,
       subject: `Invoice for Water Heater Service- Due ${dueDate}`,
       text: 
 `Dear ${name},
@@ -74,7 +75,10 @@ Dave Kessler
           filename: 'invoice.pdf',
           path: pdfPath
         }
-      ]
+      ],
+      headers: {
+        'X-SES-CONFIGURATION-SET': 'waterHeater',
+      },
     }).then((r) => {
       console.log('Email sent');
 

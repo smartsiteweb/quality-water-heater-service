@@ -166,6 +166,7 @@ const generatePdf = (e) => {
       data.append('date', getDateTime()[0]);
       data.append('dueDate', getDateTime(14)[0]);
       data.append('totalDue', document.getElementById('table_total_text').textContent);
+      data.append('recipient', document.getElementById('customer_email').value);
 
       console.log(data);
 
