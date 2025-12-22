@@ -2,7 +2,7 @@ const nodemailer = require('nodemailer');
 
 
 const transporter = nodemailer.createTransport({
-    host: 'email-smtp.us-west-1.amazonaws.cum',
+    host: 'email-smtp.us-west-1.amazonaws.com',
     port: 587,
     auth: {
         user: process.env.USER_ID,
