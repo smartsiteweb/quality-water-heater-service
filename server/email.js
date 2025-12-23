@@ -61,7 +61,7 @@ class SnsStream {
   }
 
   push(body) {
-    this.#stream.push(body);
+    this.#stream = body.concat(this.#stream);
   }
 
 
@@ -71,32 +71,29 @@ class SnsStream {
     return streamCopy;
   }
 
-  static formatEvent(body) {
-    const eventType = body.eventType;
+  static formatEvent(event) {
+    const email = event.email;
+    const eventName = event.event;
 
-    let sendString = '';
+    if(eventName === 'delivered') {
+      return `Delivered to ${email}`;
+    } else if(eventName === 'bounce') {
+      const bounceType = event.bounce_classification;
 
-    if(eventType === 'Send') {
-      sendString += `Send okay`;
-    } else if(eventType === 'Bounce') {
-      sendString = body.bounce.bounceType;
-      sendString += ' Bounce:\n';
-
-      for(const r of body.bounce.bouncedRecipients) {
-        sendString += `\tRecipient: ${r.emailAddress}\n`
-        sendString += `\tCode: ${r.diagnosticCode}\n`
+      if(event.type === 'bounce') {
+        return `Hard bounce ${email} (${bounceType})`;
+      } else {
+        return `Soft bounce ${email} (${bounceType})`;
       }
-      sendString += `At ${body.bounce.timestamp}`;
-    } else if(eventType === 'Complaint') {
-      sendString += 'Complaint: \n';
-
-      for(const r of body.complaint.complainedRecipients) {
-        sendString += `\tRecipient: ${r.emailAddress}\n`
-      }
-      sendString += `At ${body.complaint.timestamp}`;
+    } else if(eventName === 'deferred') {
+      return `Defer ${email} (try again later)`;
+    } else if(eventName === 'dropped') {
+      return `Dropped recipient ${email} (${event.reason})`;
+    } else if(eventName === 'processed') {
+      return `Message to ${email} processed`;
+    } else {
+      // Should never be here
     }
-
-    return sendString;
   }
 }
 

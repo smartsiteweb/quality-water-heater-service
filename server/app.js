@@ -70,15 +70,14 @@ app.post('/invoice', (req, res) => {
 app.post('/sns', jsonParser, (req, res) => {
   console.log('POST /sns')
   
-  
-  
   const body = req.body;
   
   console.log(body);
-  
   snsStream.push(body);
-  // console.log(JSON.stringify(body));
-  console.log(SnsStream.formatEvent(body));
+
+  for(const e of body) {
+    console.log(SnsStream.formatEvent(e));
+  }
 
   res.status(200);
   res.send();
