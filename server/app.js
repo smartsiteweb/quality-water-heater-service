@@ -85,11 +85,11 @@ app.post('/sns', jsonParser, (req, res) => {
 
 app.get('/snsstream', (_, res) => {
   const stream = snsStream.consume();
-  stream.map((b) => SnsStream.formatEvent(b));
+  const formattedStream = stream.map((b) => SnsStream.formatEvent(b));
 
   res.status(200);
   res.header('content-type', 'application/json');
-  res.send(JSON.stringify({'events': stream}));
+  res.send(JSON.stringify({'events': formattedStream}));
 });
 
 app.listen(port, () => {

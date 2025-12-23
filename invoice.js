@@ -59,20 +59,8 @@ const getSnsStream = () => {
   })
   .then((r) => {
     for(const e of r.events) {
-      // console.log(e);
-
-      if(e.eventType === 'Bounce') {
-        if(e.bounce.bounceType === 'Permanent') {
-          alerts = `<p>Address <span>${e.bounce.bouncedRecipients[0].emailAddress}</span> cannot be sent to (most likely it doesn't exist). Ask for a new address or check that it is spelled correctly. Please do not try this address again.</p>` + alerts
-        } else {
-          alerts = `<p>Failed to send to <span>${e.bounce.bouncedRecipients[0].emailAddress}</span>. Try again or ask for a new address.</p>` + alerts;
-        }
-      } else if(e.eventType === 'Complaint') {
-        alerts = `<p>Address <span>${e.complaint.complainedRecipients[0].emailAddress}</span> reported their invoice message as spam.</p>` + alerts;
-      } else if(e.eventType === 'Delivery') {
-        alerts = `<p>Email Delivered!</p>`;
-      }
-      // } else if(e.eventType === )
+      console.log(e);
+      alerts = `<p>${e}</p>` + alerts;
     }
 
     if(r.events.length !== 0)

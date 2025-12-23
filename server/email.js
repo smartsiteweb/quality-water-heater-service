@@ -76,19 +76,13 @@ class SnsStream {
     const eventName = event.event;
 
     if(eventName === 'delivered') {
-      return `Delivered to ${email}`;
+      return `Email Delivered!`;
     } else if(eventName === 'bounce') {
-      const bounceType = event.bounce_classification;
-
-      if(event.type === 'bounce') {
-        return `Hard bounce ${email} (${bounceType})`;
-      } else {
-        return `Soft bounce ${email} (${bounceType})`;
-      }
+      return `Could not send to ${email} (most likely it doesn't exist). Please ask for a different address or check your spelling.`
     } else if(eventName === 'deferred') {
-      return `Defer ${email} (try again later)`;
+      return `Please defer sending to ${email} (try again later)`;
     } else if(eventName === 'dropped') {
-      return `Dropped recipient ${email} (${event.reason})`;
+      return `Email provider dropped the message to ${email}. Please ask for a different address or check your spelling.`
     } else if(eventName === 'processed') {
       return `Message to ${email} processed`;
     } else {
