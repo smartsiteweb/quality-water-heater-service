@@ -1067,6 +1067,9 @@ footer {
 
   #about {
     padding-top: 8rem;
+
+    padding-left: 15vw;
+    padding-right: 15vw;
   }
 }
 
