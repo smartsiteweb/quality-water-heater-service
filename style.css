@@ -79,6 +79,8 @@ header {
   /* background-color: rgba(256, 256, 256, .7); */
   background-color: rgb(43, 109, 163);
   color: white;
+
+  border-bottom: 2px solid black;
 }
 
 #header_span {
@@ -214,8 +216,8 @@ header {
   li {
     position: relative;
 
-    display: flex;
-    flex-direction: column;
+    /* display: flex; */
+    /* flex-direction: column; */
 
     background-color: rgb(43, 109, 163);
     /* color: #e3e3e3; */
@@ -226,9 +228,9 @@ header {
     /* height: 3rem; */
     /* width: calc(100% - 2.4rem); */
     width: 75%;
-    height: 10rem;
+    height: 8.3rem;
 
-    justify-content: space-between;
+    /* justify-content: space-between; */
 
     /* border-radius: .5rem; */
     /* border-color: black;
@@ -240,6 +242,7 @@ header {
 
     h3 {
       font-weight: 600;
+      margin-bottom: 1rem;
     }
 
     img {
