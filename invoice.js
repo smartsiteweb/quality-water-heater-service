@@ -7,8 +7,8 @@ let submitForm;
 
 let secretEntered = false;
 
-const API = 'https://invoice-emailer-x6q92.ondigitalocean.app';
-// const API = 'https://localhost:3000';
+// const API = 'https://invoice-emailer-x6q92.ondigitalocean.app';
+const API = 'https://localhost:3000';
 
 let alerts = '';
 
@@ -20,13 +20,12 @@ window.addEventListener('load', (_) => {
   submitForm.addEventListener('submit', generatePdf);
 
   document.getElementById('tank_selector').addEventListener('change', onTankChange);
+  document.getElementById('tank_brand').addEventListener('input', onBrandChange);
   document.getElementById('tank_cost').addEventListener('input', onTankCostChange);
 
   document.getElementById('customer_name').addEventListener('input', onCustomerNameChange);
   document.getElementById('customer_email').addEventListener('input', onCustomerEmailChange);
-  document.getElementById('customer_phone').addEventListener('input', onCustomerPhoneChange);
-
-  document.getElementById('review').addEventListener('change', onReviewChange);
+  document.getElementById('customer_address').addEventListener('input', onCustomerPhoneChange);
 
   // const downloadButton = document.getElementById('download_button');
   // downloadButton.addEventListener('click', generatePdf);
@@ -135,6 +134,10 @@ const onTankChange = (e) => {
   calcAndUpdateTotal();
 };
 
+const onBrandChange = (e) => {
+  document.getElementById('table_tank_brand').textContent = e.target.value;
+}
+
 const onTankCostChange = (e) => {
   e.preventDefault();
   document.getElementById('table_service_cost').textContent = e.target.value;
@@ -148,12 +151,12 @@ const onCustomerNameChange = (e) => {
 
 const onCustomerEmailChange = (e) => {
   e.preventDefault();
-  document.getElementById('bill_to_email').textContent = e.target.value;
+  // document.getElementById('bill_to_email').textContent = e.target.value;
 }
 
 const onCustomerPhoneChange = (e) => {
   e.preventDefault();
-  document.getElementById('bill_to_phone').textContent = e.target.value;
+  document.getElementById('bill_to_address').textContent = e.target.value;
 }
 
 const onReviewChange = (e) => {
@@ -165,23 +168,21 @@ const onReviewChange = (e) => {
 
 
 const calcAndUpdateTotal = () => {
-  const total = Number(document.getElementById('tank_cost').value) - 
-    (document.getElementById('review').checked ? 50 : 0);
+  const total = Number(document.getElementById('tank_cost').value);
   
   document.getElementById('total_cost_preview').textContent = total;
   document.getElementById('table_total_text').textContent = total;
+  document.getElementById('table_paid_text').textContent = total;
 }
 
 
 const initFillPdf = () => {
   document.getElementById('bill_to_name').textContent = document.getElementById('customer_name').value;
-  document.getElementById('bill_to_email').textContent = document.getElementById('customer_email').value;
-  document.getElementById('bill_to_phone').textContent = document.getElementById('customer_phone').value;
+  // document.getElementById('bill_to_email').textContent = document.getElementById('customer_email').value;
+  document.getElementById('bill_to_address').textContent = document.getElementById('customer_address').value;
 
   document.getElementById('table_tank_size').textContent = document.getElementById('tank_selector').value;
   document.getElementById('table_service_cost').textContent = document.getElementById('tank_cost').value;
-
-  document.getElementById('table_discount_row').style = `display: ${document.getElementById('review').checked ? 'flex' : 'none'};`
 
   calcAndUpdateTotal();
 };
@@ -210,7 +211,7 @@ const generatePdf = (e) => {
 
   doc.html(invoiceEl, {
     callback: function (doc) {
-      // doc.save();
+      doc.save();
 
       const blob = doc.output('blob');
 
@@ -255,7 +256,7 @@ const generatePdf = (e) => {
       });
     },
     width: 8.5,
-    windowWidth: 750,
+    windowWidth: 710,
   });
 
 

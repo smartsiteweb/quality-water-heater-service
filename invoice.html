@@ -29,6 +29,16 @@
       </div>
 
       <div>
+        <label for="brand"> Brand </label>
+        <input id="tank_brand" type="text" name="tank_brand" list="brands">
+        <datalist id="brands">
+          <option value="AO Smith"> AO Smith </option>
+          <option value="American"> American </option>
+          <option value="Bradford White"> Bradford White </option>
+        </datalist>
+      </div>
+
+      <div>
         <label for="cost"> Cost </label>
         <input id="tank_cost" type="number" name="tank_cost" value="1600">
       </div>
@@ -48,18 +58,13 @@
       </div>
   
       <div>
-        <label for="customer_phone"> Phone </label>
-        <input id="customer_phone" type="text" name="customer_phone">
+        <label for="customer_address"> Address </label>
+        <input id="customer_address" type="text" name="customer_address">
       </div>
     </fieldset>
     
     <fieldset>
       <legend> Final Cost </legend>
-
-      <div>
-        <label for="review"> Review Discount </label>
-        <input type="checkbox" id="review" name="review" />
-      </div>
 
       <div>
         <label id="total_label"> Total: $<span id="total_cost_preview"></span> </label>
@@ -71,20 +76,23 @@
 
   <div id="invoice-border">
     <section id="generated_invoice">
-      <h1 id="invoice_head"> Invoice (<span id="date">Today's Date</span>) </h1>
+      <h1 id="invoice_head"> Invoice/Receipt for Services Rendered (<span id="date">Today's Date</span>) </h1>
   
       <div id="biller">
         <h1> Quality Water Heater Service </h1>
-        <h2> 1064 Reed St </h2>
-        <h2> Santa Clara, CA 95050 </h2>
+        <h2> A Division of Quality Bath and Home Remodeling </h2>
+        <h2> 950 So. Bascom Ave., San Jose, CA 95128 </h2>
+        <h2> (408)-679-5820 </h2>
+        <h2> CA LIC# 756210 </h2>
+        <h2> David Kessler, Owner </h2>
       </div>
   
       <div id="bill_to">
-        <h1> Bill To </h1>
+        <h1> To </h1>
   
         <h2 id="bill_to_name"> [Client Name] </h2>
-        <h2 id="bill_to_email"> [Client Email] </h2>
-        <h2 id="bill_to_phone"> [Client Phone] </h2>
+        <!-- <h2 id="bill_to_email"> [Client Email] </h2> -->
+        <h2 id="bill_to_address"> [Client Address] </h2>
       </div>
   
       <table>
@@ -94,7 +102,7 @@
         </tr>
   
         <tr>
-          <td id="table_service_name"> <span id="table_tank_size">30</span> Gallon Tank Service </td>
+          <td id="table_service_name"> <span id="table_tank_brand"></span> <span id="table_tank_size">30</span> Gallon Tank Service </td>
           <td> $<span id="table_service_cost">1600</span> </td>
         </tr>
 
@@ -107,13 +115,44 @@
           <td> Total </td>
           <td> $<span id="table_total_text">[Total]</span> </td>
         </tr>
+
+        <tr class="table_bold_row"> 
+          <td> Amount Paid </td>
+          <td> $<span id="table_paid_text">[Total]</span> </td>
+        </tr>
+        
+        <tr class="table_bold_row"> 
+          <td> Balance Due </td>
+          <td> $0 </td>
+        </tr>
+
+        <tr id="table_installed_by" class="table_bold_row"> 
+          <td> PAID IN FULL </td>
+          <td> Installed by David Kessler </td>
+        </tr>
       </table>
   
   
       <div id="terms_conditions">
-        <h1> Terms and Conditions </h1>
-        <h2> Please mail checks within 14 days of this invoice date </h2>
-        <h2> Please make checks payable to: Quality Water Heater Service </h2>
+        <h1> WARRANTY </h1>
+        <p>
+          Manufacturer's warranty: 6 years from date of installation on heater.
+          Also includes one year in home labor by Manufacturer.
+        </p>
+
+        <h2> Additional Warranty </h2>
+        <p>
+          Two year warranty from date of installation from Quality Water Heater Service.
+        </p>
+
+        <p>
+          Thank you for your business!
+          Please contact our business office with any questions or further information
+          needed at <span id="rose-email">rosemgt2020@yahoo.com</span>.
+        </p>
+
+        <h3> Kris Rose, Operations Manager, (408)-394-7477 </h3>
+
         <h3> This invoice was generated on <span id="gen_date">[Date]</span> at <span id="gen_time">[Time]</span> </h3>
       </div>
     </section>
