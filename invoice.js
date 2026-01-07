@@ -7,8 +7,8 @@ let submitForm;
 
 let secretEntered = false;
 
-// const API = 'https://invoice-emailer-x6q92.ondigitalocean.app';
-const API = 'https://localhost:3000';
+const API = 'https://invoice-emailer-x6q92.ondigitalocean.app';
+// const API = 'https://localhost:3000';
 
 let alerts = '';
 
@@ -211,7 +211,7 @@ const generatePdf = (e) => {
 
   doc.html(invoiceEl, {
     callback: function (doc) {
-      doc.save();
+      // doc.save();
 
       const blob = doc.output('blob');
 
