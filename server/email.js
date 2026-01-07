@@ -16,27 +16,39 @@ function sendInvoice(recipient, name, date, dueDate, totalDue, filePath) {
   return transporter.sendMail({
         from: '"Quality Water Heater Service" <dave@qualitywaterheaterservice.com>',
         to: `${recipient}`,
-        subject: `Invoice for Water Heater Service- Due ${dueDate}`,
-        text: 
-`Dear ${name},
+        subject: `Invoice - Receipt for Water Heater Service- ${dueDate}`,
+        html: 
+`<p>Dear ${name},</p>
 
-I am reaching out to provide the invoice for servicing your water heater on ${date}. Below is a summary of the invoice:
+<p>I am reaching out to provide the invoice-receipt for servicing your water heater on ${date}. Below is a summary: </p>
 
-Date Issued: ${date}
-Due Date: ${dueDate}
-Total Amount: $${totalDue}
+<p>
+Date Issued: ${date} <br>
+Total Paid: ${totalDue}
+</p>
 
-For your records, a PDF version of this invoice is also attached.
+<p>
+For your records, a PDF version of this invoice-receipt is also attached.
+</p>
 
-Please mail your check to 1064 Reed St, Santa Clara, CA 95050 and make it payable to Quality Water Heater Service. If you've already paid, feel free to disregard this email. 
+<p>
+Thank you for choosing Quality Water Heater Service. Should you have any questions, please call me at <a href="tel:4086795820"> (408)-679-5820 </a>
+or contact Kris Rose (Operations Manager):
+</p>
 
-Thank you for choosing Quality Water Heater Service. Should you have any questions, please call me at (408)-679-5820.
+<a href="tel:4083947477"> Cell: 408-394-7477 </a> <br>
+<a href="mailto:rosemgt2020@yahoo.com"> rosemgt2020@yahoo.com </a> <br>
 
-Best,
+<p> We appreciate your business! </p>
+
+<p>
+Best, <br>
 Dave Kessler
-
-* This is a one-time transactional email. You are not signed up for any marketing emails nor are on any emailing lists.
+</p>
+<p>
+* This is a one-time transactional email. You are not signed up for any marketing emails nor are on any emailing lists. <br>
 ** Please do not respond to this email. This account's inbox is not monitored.
+</p>
 `
         ,
         attachments: [
