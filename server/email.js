@@ -24,7 +24,7 @@ function sendInvoice(recipient, name, date, dueDate, totalDue, filePath) {
 
 <p>
 Date Issued: ${date} <br>
-Total Paid: ${totalDue}
+Total Paid: $${totalDue}
 </p>
 
 <p>
