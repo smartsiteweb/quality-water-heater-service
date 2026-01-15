@@ -147,18 +147,20 @@ header {
   position: relative;
 
   img {
-    object-fit: contain;
+    /* object-fit: contain; */
+    object-fit: cover;
     height: 25rem;
+    width: 100%;
 
     position: relative;
-    left: -5rem;
+    /* left: -5rem; */
   }
 }
 
 #landing_toast {
   position: absolute;
   right: 0;
-  top: 4rem;
+  top: 8rem;
   background-color: rgb(43, 109, 163);
   color: white;
   padding: 1rem;
@@ -640,18 +642,19 @@ footer {
 /* tablet styling */
 @media screen and (min-width: 430px)
 {
-  body {
-    /* background-color: red; */
-  }
-
   #landing_img_container {
     img {
       width: 100vw;
-      height: 40vh;
+      height: 46vh;
       object-fit: cover;
       /* height: auto; */
       left: 0;
+      object-position: top -3rem left 0;
     }
+  }
+
+  #landing_toast {
+    top: 11rem;
   }
 
   #curly {
@@ -723,7 +726,7 @@ footer {
       height: 100%;
       width: auto;
       object-fit: contain;
-      object-position: bottom 0rem left -8rem;
+      object-position: top 0rem left -3rem;
       left: 0;
       /* top: 0; */
       /* top: 5rem; */
@@ -735,7 +738,7 @@ footer {
   }
 
   #landing_toast {
-    top: 25vh;
+    top: 30vh;
     font-size: 1.2rem;
   }
 

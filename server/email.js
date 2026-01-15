@@ -32,14 +32,10 @@ For your records, a PDF version of this invoice-receipt is also attached.
 </p>
 
 <p>
-Thank you for choosing Quality Water Heater Service. Should you have any questions, please call me at <a href="tel:4086795820"> (408)-679-5820 </a>
-or contact Kris Rose (Operations Manager):
+Thank you for choosing Quality Water Heater Service. Should you have any questions, please call me at <a href="tel:4086795820"> (408)-679-5820 </a>.
 </p>
 
-<a href="tel:4083947477"> Cell: 408-394-7477 </a> <br>
-<a href="mailto:rosemgt2020@yahoo.com"> rosemgt2020@yahoo.com </a> <br>
-
-<p> We appreciate your business! </p>
+<p> I appreciate your business! </p>
 
 <p>
 Best, <br>
