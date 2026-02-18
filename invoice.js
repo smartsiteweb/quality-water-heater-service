@@ -240,6 +240,8 @@ const generatePdf = (e) => {
       data.append('dueDate', getDateTime(14)[0]);
       data.append('totalDue', document.getElementById('table_total_text').textContent);
       data.append('recipient', document.getElementById('customer_email').value);
+      data.append('notes', document.getElementById('customer_notes').value);
+      data.append('address', document.getElementById('customer_address').value);
 
       fetch(`${API}/invoice`, {
         method: 'POST',

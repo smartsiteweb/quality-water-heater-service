@@ -36,7 +36,8 @@ app.post('/invoice', (req, res) => {
     const pdfPath = files['pdf'][0].path;
     const name = getField('name');
     const date = getField('date');
-    const dueDate = getField('dueDate');
+    const address = getField('address');
+    const notes = getField('notes');
     const totalDue = getField('totalDue');
     const recipient = getField('recipient');
     const pw = getField('pw');
@@ -52,7 +53,7 @@ app.post('/invoice', (req, res) => {
       return;
     }
 
-    sendInvoice(recipient, name, date, dueDate, totalDue, pdfPath)
+      sendInvoice(recipient, name, date, address, notes, totalDue, pdfPath)
     .then((_) => {
       console.log(`Email sent: ${recipient}`);
       res.header('content-type', 'text/plain');
