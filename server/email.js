@@ -35,7 +35,7 @@ For your records, a PDF version of this invoice-receipt is also attached.
 Thank you for choosing Quality Water Heater Service. Should you have any questions, please call me at <a href="tel:4086795820"> (408)-679-5820 </a>.
 </p>
 
-<p> I appreciate your business! </p>
+<p> I appreciate your business! Please leave a review at <a href="https://www.google.com/search?newwindow=1&sca_esv=c5660da53d646b09&sxsrf=ANbL-n6ife0Pabbv5EoIlm7ZXo9nncu7hQ:1771387244504&si=AL3DRZEsmMGCryMMFSHJ3StBhOdZ2-6yYkXd_doETEE1OR-qOUQVh5rLLqVNB_Uwy_0am4_Eggtuo_shdhYYrm2cp1kCmchGMv6Iw7mNnTuy0YnO24Atqjjzyq5Z0Beojs8xtSt-HHnGNXQIba_og-TGW7dHd8_FvQ%3D%3D&q=Quality+Water+Heater+Service+Reviews&sa=X&ved=2ahUKEwimm9_bk-KSAxWkOTQIHVo7DYMQ0bkNegQIMxAH&biw=1667&bih=1284&dpr=1#lrd=0x808fcbcedd722147:0xa1648ae7dcab0d07,3,,,,">Google</a> or at <a href="https://www.yelp.com/writeareview/biz/LukqoyqIjVoieTvejjvpsg?return_url=%2Fbiz%2FLukqoyqIjVoieTvejjvpsg&review_origin=biz-details-war-button">Yelp</a> </p>
 
 <p>
 Best, <br>

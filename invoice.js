@@ -22,10 +22,12 @@ window.addEventListener('load', (_) => {
   document.getElementById('tank_selector').addEventListener('change', onTankChange);
   document.getElementById('tank_brand').addEventListener('input', onBrandChange);
   document.getElementById('tank_cost').addEventListener('input', onTankCostChange);
+  document.getElementById('tank_date').addEventListener('input', onTankDateChange);
 
   document.getElementById('customer_name').addEventListener('input', onCustomerNameChange);
   document.getElementById('customer_email').addEventListener('input', onCustomerEmailChange);
-  document.getElementById('customer_address').addEventListener('input', onCustomerPhoneChange);
+  document.getElementById('customer_address').addEventListener('input', onCustomerAddressChange);
+  document.getElementById('customer_phone').addEventListener('input', onCustomerPhoneChange);
 
   // const downloadButton = document.getElementById('download_button');
   // downloadButton.addEventListener('click', generatePdf);
@@ -110,7 +112,8 @@ const setDateTime = () => {
 
   document.getElementById('date').textContent = date;
   document.getElementById('gen_date').textContent = date;
-  document.getElementById('gen_time').textContent = time;
+    document.getElementById('gen_time').textContent = time;
+    document.getElementById('tank_date').value = date;
 };
 
 
@@ -144,6 +147,12 @@ const onTankCostChange = (e) => {
   calcAndUpdateTotal();
 }
 
+const onTankDateChange = (e) => {
+    e.preventDefault();
+
+    document.getElementById('date').textContent = e.target.value;
+}
+
 const onCustomerNameChange = (e) => {
   e.preventDefault();
   document.getElementById('bill_to_name').textContent = e.target.value;
@@ -154,9 +163,14 @@ const onCustomerEmailChange = (e) => {
   // document.getElementById('bill_to_email').textContent = e.target.value;
 }
 
-const onCustomerPhoneChange = (e) => {
+const onCustomerAddressChange = (e) => {
   e.preventDefault();
   document.getElementById('bill_to_address').textContent = e.target.value;
+}
+
+const onCustomerPhoneChange = (e) => {
+  e.preventDefault();
+  document.getElementById('bill_to_phone').textContent = e.target.value;
 }
 
 const onReviewChange = (e) => {
@@ -178,12 +192,15 @@ const calcAndUpdateTotal = () => {
 
 const initFillPdf = () => {
   document.getElementById('bill_to_name').textContent = document.getElementById('customer_name').value;
-  // document.getElementById('bill_to_email').textContent = document.getElementById('customer_email').value;
-  document.getElementById('bill_to_address').textContent = document.getElementById('customer_address').value;
+    document.getElementById('bill_to_address').textContent = document.getElementById('customer_address').value;
+    
+  document.getElementById('bill_to_phone').textContent = document.getElementById('customer_phone').value;
 
   document.getElementById('table_tank_size').textContent = document.getElementById('tank_selector').value;
   document.getElementById('table_service_cost').textContent = document.getElementById('tank_cost').value;
 
+    document.getElementById('date').textContent = getDateTime()[0];
+    
   calcAndUpdateTotal();
 };
 
